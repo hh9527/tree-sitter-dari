@@ -36,4 +36,9 @@ assert.equal(edited.status,0,JSON.stringify(edited.result));
 const highlights=run(['query','queries/highlights.scm',samples[0]]);
 assert.equal(highlights.status,0,highlights.stderr);
 for(const capture of ['keyword','function.call','tag','attribute'])assert(highlights.stdout.includes(capture),capture);
-console.log(`Parsed ${samples.length} bundled drafts plus ${process.argv.length-2} external drafts; invalid syntax, recovery, incremental edit and highlight queries passed`);
+for (const [query, capture] of [['textobjects', 'entry.around'], ['indents', 'indent']]) {
+  const result = run(['query', `queries/${query}.scm`, samples[0]]);
+  assert.equal(result.status, 0, result.stderr);
+  assert(result.stdout.includes(capture), `${query}: ${capture}`);
+}
+console.log(`Parsed ${samples.length} bundled drafts plus ${process.argv.length-2} external drafts; invalid syntax, recovery, incremental edit and highlight/textobject/indent queries passed`);
