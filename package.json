@@ -1,0 +1,24 @@
+{
+  "name": "tree-sitter-dari",
+  "version": "0.1.0",
+  "description": "Tree-sitter grammar for DARI typed analysis drafts",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hh9527/tree-sitter-dari.git"
+  },
+  "files": [
+    "grammar.js",
+    "tree-sitter.json",
+    "src/**",
+    "queries/**"
+  ],
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test && node scripts/test-parser.mjs",
+    "check": "npm run generate && npm test"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "0.27.1"
+  }
+}

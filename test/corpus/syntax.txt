@@ -1,0 +1,681 @@
+==================
+Declarations and DOM children
+==================
+data ctx := context();
+figure f := BarChart(spec={x:"name",value:"n"},data=ctx);
+report answer := Report(title="概览") [h1 ["标题"], p [Lit ["1.2"], Value(data=ctx?.total)], figure [Figure(ref=f), figcaption ["说明"]], br,];
+---
+
+(source_file
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments)))
+  (figure_declaration
+    (identifier)
+    (node
+      (tag_name)
+      (attributes
+        (attribute
+          (tag_name)
+          (object
+            (pair
+              (identifier)
+              (string
+                (string_content)))
+            (pair
+              (identifier)
+              (string
+                (string_content)))))
+        (attribute
+          (tag_name)
+          (identifier)))))
+  (report_declaration
+    (identifier)
+    (node
+      (tag_name)
+      (attributes
+        (attribute
+          (tag_name)
+          (string
+            (string_content))))
+      (children
+        (node
+          (tag_name)
+          (children
+            (string
+              (string_content))))
+        (node
+          (tag_name)
+          (children
+            (node
+              (tag_name)
+              (children
+                (string
+                  (string_content))))
+            (node
+              (tag_name)
+              (attributes
+                (attribute
+                  (tag_name)
+                  (member_expression
+                    (identifier)
+                    (identifier)))))))
+        (node
+          (tag_name)
+          (children
+            (node
+              (tag_name)
+              (attributes
+                (attribute
+                  (tag_name)
+                  (identifier))))
+            (node
+              (tag_name)
+              (children
+                (string
+                  (string_content))))))
+        (node
+          (tag_name))))))
+
+==================
+JSON literals and comments
+==================
+// 注释
+/* block
+ ** comment */
+data values := [null,true,false,0,12,1.2e-3,-4,1E+2,"line\n\u4e2d\"\\",];
+data obj := {unquoted:values,"quoted-key":{},values,"values",};
+---
+
+(source_file
+  (comment)
+  (comment)
+  (data_declaration
+    (identifier)
+    (array
+      (null)
+      (boolean)
+      (boolean)
+      (number)
+      (number)
+      (number)
+      (unary_expression
+        (number))
+      (number)
+      (string
+        (string_content)
+        (escape_sequence)
+        (escape_sequence)
+        (escape_sequence)
+        (escape_sequence))))
+  (data_declaration
+    (identifier)
+    (object
+      (pair
+        (identifier)
+        (identifier))
+      (pair
+        (string
+          (string_content))
+        (object))
+      (shorthand_property
+        (identifier))
+      (shorthand_property
+        (string
+          (string_content))))))
+
+==================
+All lambda parameter forms
+==================
+data a := map([1],x=>x+1);
+data b := map([1],(x)=>x*2);
+data c := map([1],(x,i)=>({value:x,index:i}));
+data d := map([1],()=>42);
+data e := map([1],x=>y=>x+y);
+---
+
+(source_file
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (array
+          (number))
+        (lambda_expression
+          (identifier)
+          (binary_expression
+            (identifier)
+            (number))))))
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (array
+          (number))
+        (lambda_expression
+          (parameters
+            (identifier))
+          (binary_expression
+            (identifier)
+            (number))))))
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (array
+          (number))
+        (lambda_expression
+          (parameters
+            (identifier)
+            (identifier))
+          (parenthesized_expression
+            (object
+              (pair
+                (identifier)
+                (identifier))
+              (pair
+                (identifier)
+                (identifier))))))))
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (array
+          (number))
+        (lambda_expression
+          (parameters)
+          (number)))))
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (array
+          (number))
+        (lambda_expression
+          (identifier)
+          (lambda_expression
+            (identifier)
+            (binary_expression
+              (identifier)
+              (identifier))))))))
+
+==================
+Precedence and associativity
+==================
+data a := 1 + 2 * 3;
+data b := 1 - 2 - 3;
+data c := a ?? b || true && false;
+data d := a == b != false;
+data e := !false || -a < b && a >= 0;
+data f := (a + b) / 2 % 3;
+---
+
+(source_file
+  (data_declaration
+    (identifier)
+    (binary_expression
+      (number)
+      (binary_expression
+        (number)
+        (number))))
+  (data_declaration
+    (identifier)
+    (binary_expression
+      (binary_expression
+        (number)
+        (number))
+      (number)))
+  (data_declaration
+    (identifier)
+    (binary_expression
+      (identifier)
+      (binary_expression
+        (identifier)
+        (binary_expression
+          (boolean)
+          (boolean)))))
+  (data_declaration
+    (identifier)
+    (binary_expression
+      (binary_expression
+        (identifier)
+        (identifier))
+      (boolean)))
+  (data_declaration
+    (identifier)
+    (binary_expression
+      (unary_expression
+        (boolean))
+      (binary_expression
+        (binary_expression
+          (unary_expression
+            (identifier))
+          (identifier))
+        (binary_expression
+          (identifier)
+          (number)))))
+  (data_declaration
+    (identifier)
+    (binary_expression
+      (binary_expression
+        (parenthesized_expression
+          (binary_expression
+            (identifier)
+            (identifier)))
+        (number))
+      (number))))
+
+==================
+Static projections and optional members
+==================
+data a := [{"x":{value:1}}];
+data b := a[0]["x"]?.value;
+data c := a[0].x.value ?? 0;
+data d := (a[0]).x;
+---
+
+(source_file
+  (data_declaration
+    (identifier)
+    (array
+      (object
+        (pair
+          (string
+            (string_content))
+          (object
+            (pair
+              (identifier)
+              (number)))))))
+  (data_declaration
+    (identifier)
+    (member_expression
+      (subscript_expression
+        (subscript_expression
+          (identifier)
+          (number))
+        (string
+          (string_content)))
+      (identifier)))
+  (data_declaration
+    (identifier)
+    (binary_expression
+      (member_expression
+        (member_expression
+          (subscript_expression
+            (identifier)
+            (number))
+          (identifier))
+        (identifier))
+      (number)))
+  (data_declaration
+    (identifier)
+    (member_expression
+      (parenthesized_expression
+        (subscript_expression
+          (identifier)
+          (number)))
+      (identifier))))
+
+==================
+Relational pipeline
+==================
+data t := table([{name:"a",n:1}]);
+data r := select({from:{t},where:(r)=>r.t.n>0,
+ group_by:r=>({name:r.t.name}),fields:(g,rows)=>({name:g.name,n:sum(rows.t.n)??0}),
+ order_by:o=>[desc(o.n),asc(o.name)],limit:10});
+data s := select_one({from:{r},fields:x=>({n:x.r.n})});
+---
+
+(source_file
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (array
+          (object
+            (pair
+              (identifier)
+              (string
+                (string_content)))
+            (pair
+              (identifier)
+              (number)))))))
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (object
+          (pair
+            (identifier)
+            (object
+              (shorthand_property
+                (identifier))))
+          (pair
+            (identifier)
+            (lambda_expression
+              (parameters
+                (identifier))
+              (binary_expression
+                (member_expression
+                  (member_expression
+                    (identifier)
+                    (identifier))
+                  (identifier))
+                (number))))
+          (pair
+            (identifier)
+            (lambda_expression
+              (identifier)
+              (parenthesized_expression
+                (object
+                  (pair
+                    (identifier)
+                    (member_expression
+                      (member_expression
+                        (identifier)
+                        (identifier))
+                      (identifier)))))))
+          (pair
+            (identifier)
+            (lambda_expression
+              (parameters
+                (identifier)
+                (identifier))
+              (parenthesized_expression
+                (object
+                  (pair
+                    (identifier)
+                    (member_expression
+                      (identifier)
+                      (identifier)))
+                  (pair
+                    (identifier)
+                    (binary_expression
+                      (call_expression
+                        (identifier)
+                        (arguments
+                          (member_expression
+                            (member_expression
+                              (identifier)
+                              (identifier))
+                            (identifier))))
+                      (number)))))))
+          (pair
+            (identifier)
+            (lambda_expression
+              (identifier)
+              (array
+                (call_expression
+                  (identifier)
+                  (arguments
+                    (member_expression
+                      (identifier)
+                      (identifier))))
+                (call_expression
+                  (identifier)
+                  (arguments
+                    (member_expression
+                      (identifier)
+                      (identifier)))))))
+          (pair
+            (identifier)
+            (number))))))
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (object
+          (pair
+            (identifier)
+            (object
+              (shorthand_property
+                (identifier))))
+          (pair
+            (identifier)
+            (lambda_expression
+              (identifier)
+              (parenthesized_expression
+                (object
+                  (pair
+                    (identifier)
+                    (member_expression
+                      (member_expression
+                        (identifier)
+                        (identifier))
+                      (identifier))))))))))))
+
+==================
+Attributes and namespaced DOM tags
+==================
+data t := {value:2};
+figure chart := LineChart(spec={x:"day",value:"n"}, data=t,);
+report result := Report(title="test") [div(class="section",data-oks-shrink=true) [p ["文字",Value(data=round(t.value,1))], custom:tag(aria-label="hello") [],],Figure(ref=chart)];
+---
+
+(source_file
+  (data_declaration
+    (identifier)
+    (object
+      (pair
+        (identifier)
+        (number))))
+  (figure_declaration
+    (identifier)
+    (node
+      (tag_name)
+      (attributes
+        (attribute
+          (tag_name)
+          (object
+            (pair
+              (identifier)
+              (string
+                (string_content)))
+            (pair
+              (identifier)
+              (string
+                (string_content)))))
+        (attribute
+          (tag_name)
+          (identifier)))))
+  (report_declaration
+    (identifier)
+    (node
+      (tag_name)
+      (attributes
+        (attribute
+          (tag_name)
+          (string
+            (string_content))))
+      (children
+        (node
+          (tag_name)
+          (attributes
+            (attribute
+              (tag_name)
+              (string
+                (string_content)))
+            (attribute
+              (tag_name)
+              (boolean)))
+          (children
+            (node
+              (tag_name)
+              (children
+                (string
+                  (string_content))
+                (node
+                  (tag_name)
+                  (attributes
+                    (attribute
+                      (tag_name)
+                      (call_expression
+                        (identifier)
+                        (arguments
+                          (member_expression
+                            (identifier)
+                            (identifier))
+                          (number))))))))
+            (node
+              (tag_name)
+              (attributes
+                (attribute
+                  (tag_name)
+                  (string
+                    (string_content))))
+              (children))))
+        (node
+          (tag_name)
+          (attributes
+            (attribute
+              (tag_name)
+              (identifier))))))))
+
+==================
+Comment delimiters inside strings
+==================
+data s := "// not a comment /* neither */ ); ] } ;";
+report a := Report [p ["{ [ //",Lit ["\t"]]];
+---
+
+(source_file
+  (data_declaration
+    (identifier)
+    (string
+      (string_content)))
+  (report_declaration
+    (identifier)
+    (node
+      (tag_name)
+      (children
+        (node
+          (tag_name)
+          (children
+            (string
+              (string_content))
+            (node
+              (tag_name)
+              (children
+                (string
+                  (escape_sequence))))))))))
+
+==================
+Keyword names and builtin calls
+==================
+data value := data({rows:[]});
+data q := query({data:value,report:"r",figure:"f",true:false});
+data time := time_windows(context(),{unit:"day",count:7,mode:"complete"});
+---
+
+(source_file
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (object
+          (pair
+            (identifier)
+            (array))))))
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (object
+          (pair
+            (identifier)
+            (identifier))
+          (pair
+            (identifier)
+            (string
+              (string_content)))
+          (pair
+            (identifier)
+            (string
+              (string_content)))
+          (pair
+            (identifier)
+            (boolean))))))
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (call_expression
+          (identifier)
+          (arguments))
+        (object
+          (pair
+            (identifier)
+            (string
+              (string_content)))
+          (pair
+            (identifier)
+            (number))
+          (pair
+            (identifier)
+            (string
+              (string_content))))))))
+
+==================
+Parentheses versus parameters
+==================
+data a := (1);
+data b := (a);
+data c := ((a));
+data d := map([a],(x)=>(x+1));
+data e := map([a],(x)=>((x)));
+---
+
+(source_file
+  (data_declaration
+    (identifier)
+    (parenthesized_expression
+      (number)))
+  (data_declaration
+    (identifier)
+    (parenthesized_expression
+      (identifier)))
+  (data_declaration
+    (identifier)
+    (parenthesized_expression
+      (parenthesized_expression
+        (identifier))))
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (array
+          (identifier))
+        (lambda_expression
+          (parameters
+            (identifier))
+          (parenthesized_expression
+            (binary_expression
+              (identifier)
+              (number)))))))
+  (data_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (array
+          (identifier))
+        (lambda_expression
+          (parameters
+            (identifier))
+          (parenthesized_expression
+            (parenthesized_expression
+              (identifier))))))))
