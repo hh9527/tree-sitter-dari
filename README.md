@@ -8,7 +8,7 @@ data spec := {x:"name",value:"value"};
 figure usage := BarChart(spec=spec,data=rows);
 report answer := Report(title="资源概览") [
   h1 ["资源概览"],
-  figure [Figure(ref=usage),figcaption ["平均使用率"]],
+  UseFigure(ref = usage, caption = "平均使用率"),
 ];
 ```
 

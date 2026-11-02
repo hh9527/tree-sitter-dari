@@ -3,7 +3,7 @@ Declarations and DOM children
 ==================
 data ctx := context();
 figure f := BarChart(spec={x:"name",value:"n"},data=ctx);
-report answer := Report(title="概览") [h1 ["标题"], p [Lit ["1.2"], Value(data=ctx?.total)], figure [Figure(ref=f), figcaption ["说明"]], br,];
+report answer := Report(title="概览") [h1 ["标题"], p [Lit ["1.2"], Value(data=ctx?.total)], UseFigure(ref = f, caption = "说明"), br,];
 ---
 
 (source_file
@@ -64,18 +64,14 @@ report answer := Report(title="概览") [h1 ["标题"], p [Lit ["1.2"], Value(da
                     (identifier)))))))
         (node
           (tag_name)
-          (children
-            (node
+          (attributes
+            (attribute
               (tag_name)
-              (attributes
-                (attribute
-                  (tag_name)
-                  (identifier))))
-            (node
+              (identifier))
+            (attribute
               (tag_name)
-              (children
-                (string
-                  (string_content))))))
+              (string
+                (string_content)))))
         (node
           (tag_name))))))
 
@@ -459,7 +455,7 @@ Attributes and namespaced DOM tags
 ==================
 data t := {value:2};
 figure chart := LineChart(spec={x:"day",value:"n"}, data=t,);
-report result := Report(title="test") [div(class="section",data-oks-shrink=true) [p ["文字",Value(data=round(t.value,1))], custom:tag(aria-label="hello") [],],Figure(ref=chart)];
+report result := Report(title="test") [div(class="section",data-oks-shrink=true) [p ["文字",Value(data=round(t.value,1))], custom:tag(aria-label="hello") [],],UseFigure(ref=chart)];
 ---
 
 (source_file

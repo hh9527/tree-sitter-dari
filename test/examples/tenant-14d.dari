@@ -187,7 +187,7 @@ data catChartRows := select({from:{c:catTop5},
   fields:(r)=>({tenant:r.c.tenant,category:r.c.category,n:r.c.n})});
 
 // ---------- 图表 ----------
-data trendSpec := {x:"day",value:"n",xLabel:"日期",valueLabel:"告警数",title:"近 14 日每日告警量"};
+data trendSpec := {xType:"String",x:"day",value:"n",xLabel:"日期",valueLabel:"告警数",title:"近 14 日每日告警量"};
 figure trendChart := LineChart(spec = trendSpec, data = dailyTotal);
 
 data growthSpec := {x:"tenant",value:"n",series:"week",stack:"total",valueLabel:"告警数",title:"告警增幅最大的 5 个租户：前一周与最近一周告警量"};
@@ -214,16 +214,16 @@ report answer := Report(title = "近 14 天租户告警变化与设备资源对�
   p [ "增幅最大的租户：", Value(data = growthTop?.tenant), "，前一周 ", Value(data = growthTop?.priorTotal), " 条，最近一周 ", Value(data = growthTop?.recentTotal), " 条，增加 ", Value(data = growthTop?.growth), " 条。" ],
   p [ "关联覆盖：最近一周有告警且可关联到租户视图的租户 ", Value(data = alarmTenantCount?.n), " 个；可关联到设备 KPI 的租户 ", Value(data = kpiTenantCount?.n), " 个；5 个租户中两周均有设备指标的是 ", Value(data = kpiCoveredCount?.n), " 个。未关联到租户的告警与未匹配到租户的设备样本不进入租户口径。" ],
   h2 [ "每日告警趋势" ],
-  figure [ Figure(ref = trendChart), figcaption [ "近 14 日每日告警量" ] ],
+  UseFigure(ref = trendChart, caption = "近 14 日每日告警量"),
   h2 [ "告警增幅最大的 5 个租户" ],
-  figure [ Figure(ref = growthChart), figcaption [ "5 个租户前一周与最近一周告警量对比" ] ],
-  figure [ Figure(ref = openChart), figcaption [ "5 个租户最近一周未清除告警占比" ] ],
+  UseFigure(ref = growthChart, caption = "5 个租户前一周与最近一周告警量对比"),
+  UseFigure(ref = openChart, caption = "5 个租户最近一周未清除告警占比"),
   h2 [ "5 个租户前后两周设备资源" ],
   p [ "下图为同一批 5 个租户在两个 7 日区间内的设备 CPU、内存平均使用率，仅作同期对照，不用于推断告警与资源使用之间的因果关系。" ],
-  figure [ Figure(ref = kpiChart), figcaption [ "5 个租户前后两周 CPU / 内存平均使用率" ] ],
+  UseFigure(ref = kpiChart, caption = "5 个租户前后两周 CPU / 内存平均使用率"),
   h2 [ "5 个租户最近一周告警构成" ],
-  figure [ Figure(ref = sevChart), figcaption [ "最近一周告警级别构成" ] ],
-  figure [ Figure(ref = catChart), figcaption [ "最近一周告警分类分布" ] ],
+  UseFigure(ref = sevChart, caption = "最近一周告警级别构成"),
+  UseFigure(ref = catChart, caption = "最近一周告警分类分布"),
   h2 [ "口径与限制" ],
   p [ "告警与设备的聚合粒度均为“每个租户在指定 7 日区间内的样本均值或计数”；租户名称取自租户视图，同名租户会被合并。分类为告警 MECATEGORY 原始编码，级别为 critical / major / minor / warning 原始值。" ],
 ];
