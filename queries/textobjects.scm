@@ -2,6 +2,7 @@
 (lambda_expression body: (_) @function.inside) @function.around
 (data_declaration value: (_) @entry.inside) @entry.around
 (figure_declaration value: (_) @class.inside) @class.around
+(answer_declaration value: (_) @class.inside) @class.around
 (report_declaration value: (_) @class.inside) @class.around
 (node (children) @class.inside) @class.around
 (node) @class.around

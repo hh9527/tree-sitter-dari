@@ -8,10 +8,11 @@ module.exports = grammar({
   conflicts: $ => [[$._expression, $.parameters]],
   rules: {
     source_file: $ => repeat($._declaration),
-    _declaration: $ => choice($.data_declaration, $.figure_declaration, $.report_declaration),
+    _declaration: $ => choice($.data_declaration, $.figure_declaration, $.report_declaration, $.answer_declaration),
     data_declaration: $ => seq('data', field('name', $.identifier), ':=', field('value', $._expression), ';'),
     figure_declaration: $ => seq('figure', field('name', $.identifier), ':=', field('value', $.node), ';'),
     report_declaration: $ => seq('report', field('name', $.identifier), ':=', field('value', $.node), ';'),
+    answer_declaration: $ => seq('answer', ':=', field('value', $.node), ';'),
     node: $ => seq(field('tag', $.tag_name), optional($.attributes), optional($.children)),
     tag_name: _ => /[A-Za-z_$][A-Za-z0-9_$:-]*/,
     attributes: $ => seq('(', commaSep($.attribute), ')'),

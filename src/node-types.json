@@ -1,5 +1,21 @@
 [
   {
+    "type": "answer_declaration",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "node",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "arguments",
     "named": true,
     "fields": {},
@@ -1014,6 +1030,10 @@
       "required": false,
       "types": [
         {
+          "type": "answer_declaration",
+          "named": true
+        },
+        {
           "type": "data_declaration",
           "named": true
         },
@@ -1317,6 +1337,10 @@
   },
   {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "answer",
     "named": false
   },
   {

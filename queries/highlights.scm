@@ -1,4 +1,4 @@
-["data" "figure" "report"] @keyword
+["data" "figure" "report" "answer"] @keyword
 (comment) @comment
 (string) @string
 (escape_sequence) @string.escape

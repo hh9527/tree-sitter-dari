@@ -6,9 +6,14 @@ DARI 分析稿的 Tree-sitter grammar，提供增量语法树和高亮查询。�
 data rows := table([{name:"CPU",value:42.5}]);
 data spec := {x:"name",value:"value"};
 figure usage := BarChart(spec=spec,data=rows);
-report answer := Report(title="资源概览") [
+report full := Report(title="资源概览") [
   h1 ["资源概览"],
   UseFigure(ref = usage, caption = "平均使用率"),
+];
+answer := Answer [
+  p ["资源概览已生成"],
+  UseFigure(ref=usage),
+  UseReport(ref=full),
 ];
 ```
 
@@ -27,14 +32,14 @@ npx tree-sitter query queries/highlights.scm path/to/answer.dari
 
 ## 语法树
 
-- 根为 `source_file`，包含 `data_declaration`、`figure_declaration` 和 `report_declaration`
-- 声明提供 `name` 和 `value` 字段；DOM `node` 提供 `tag`，以及可选 `attributes`、`children`
+- 根为 `source_file`，包含 `data_declaration`、`figure_declaration` 、`report_declaration` 和 `answer_declaration`
+- data/figure/report 声明提供 `name` 和 `value` 字段，唯一的 answer 声明只提供 `value`；DOM `node` 提供 `tag`，以及可选 `attributes`、`children`
 - 数据表达式支持 JSON 字面值、记录与简写属性、数组、调用、lambda、括号、字段访问、可选访问与静态下标
 - 运算符优先级与当前 DARI 一致，`??` 也采用左结合
 - 节点子项使用方括号和逗号；对象记录使用花括号；声明以分号结束
 - 支持行注释、块注释和 JSON 字符串转义
 
-Tree-sitter 负责语法结构和编辑过程中的错误恢复；函数白名单、重复或前向绑定、重复键、静态下标的非负整数约束、节点属性合法性及类型推导由 DARI 的语义检查负责。空文档可解析，便于编辑器从空文件开始工作。XML 风格、旧 pipeline 文本和 jq assets 不属于本 grammar。
+Tree-sitter 负责语法结构和编辑过程中的错误恢复；函数白名单、重复或前向绑定、重复键、静态下标的非负整数约束、节点属性合法性及类型推导由 DARI 的语义检查负责。空文档可解析，便于编辑器从空文件开始工作。回答出口写作 `answer := Answer [...]`，值引用写作 `value(ref=expression)`。
 
 ## 测试
 

@@ -24,6 +24,10 @@
         {
           "type": "SYMBOL",
           "name": "report_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "answer_declaration"
         }
       ]
     },
@@ -107,6 +111,31 @@
             "type": "SYMBOL",
             "name": "identifier"
           }
+        },
+        {
+          "type": "STRING",
+          "value": ":="
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "node"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "answer_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "answer"
         },
         {
           "type": "STRING",
