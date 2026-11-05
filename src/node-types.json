@@ -8,7 +8,7 @@
         "required": true,
         "types": [
           {
-            "type": "node",
+            "type": "tree_expression",
             "named": true
           }
         ]
@@ -1162,7 +1162,7 @@
         "required": true,
         "types": [
           {
-            "type": "node",
+            "type": "tree_expression",
             "named": true
           }
         ]
@@ -1318,6 +1318,22 @@
     }
   },
   {
+    "type": "tree_expression",
+    "named": true,
+    "fields": {
+      "root": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "node",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "unary_expression",
     "named": true,
     "fields": {
@@ -1456,10 +1472,6 @@
     "named": false
   },
   {
-    "type": ":=",
-    "named": false
-  },
-  {
     "type": ";",
     "named": false
   },
@@ -1500,7 +1512,15 @@
     "named": false
   },
   {
+    "type": "False",
+    "named": false
+  },
+  {
     "type": "Some",
+    "named": false
+  },
+  {
+    "type": "True",
     "named": false
   },
   {
@@ -1531,10 +1551,6 @@
   {
     "type": "escape_sequence",
     "named": true
-  },
-  {
-    "type": "false",
-    "named": false
   },
   {
     "type": "figure",
@@ -1573,7 +1589,7 @@
     "named": true
   },
   {
-    "type": "true",
+    "type": "tree",
     "named": false
   },
   {

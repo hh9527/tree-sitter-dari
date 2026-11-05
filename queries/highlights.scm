@@ -1,4 +1,4 @@
-["data" "figure" "report" "answer" "if" "else" "let"] @keyword
+["data" "figure" "report" "answer" "if" "else" "let" "tree"] @keyword
 (comment) @comment
 (string) @string
 (escape_sequence) @string.escape
@@ -17,7 +17,7 @@
 (shorthand_property (identifier) @property)
 (node tag: (tag_name) @tag)
 (attribute name: (tag_name) @attribute)
-[":=" "=>" "=" "?." "??" "||" "&&" "==" "!=" "<" ">" "<=" ">=" "+" "-" "*" "/" "%" "!"] @operator
+["=>" "=" "?." "??" "||" "&&" "==" "!=" "<" ">" "<=" ">=" "+" "-" "*" "/" "%" "!"] @operator
 ["(" ")" "[" "]" "{" "}"] @punctuation.bracket
 ["," ";" ":" "."] @punctuation.delimiter
 

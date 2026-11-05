@@ -1,9 +1,9 @@
 ==================
 Declarations and DOM children
 ==================
-data ctx := context();
-figure f := BarChart(spec={x:"name",value:"n"},data=ctx);
-report answer := Report(title="概览") [h1 ["标题"], p [Lit ["1.2"], Value(data=ctx?.total)], UseFigure(ref = f, caption = "说明"), br,];
+data ctx = context();
+figure f = BarChart(spec={x:"name",value:"n"},data=ctx);
+report answer = tree! { Report(title="概览") [h1 ["标题"], p [Lit ["1.2"], Value(data=ctx?.total)], UseFigure(ref = f, caption = "说明"), br,] };
 ---
 
 (source_file
@@ -33,47 +33,48 @@ report answer := Report(title="概览") [h1 ["标题"], p [Lit ["1.2"], Value(da
           (identifier)))))
   (report_declaration
     (identifier)
-    (node
-      (tag_name)
-      (attributes
-        (attribute
-          (tag_name)
-          (string
-            (string_content))))
-      (children
-        (node
-          (tag_name)
-          (children
+    (tree_expression
+      (node
+        (tag_name)
+        (attributes
+          (attribute
+            (tag_name)
             (string
               (string_content))))
-        (node
-          (tag_name)
-          (children
-            (node
-              (tag_name)
-              (children
-                (string
-                  (string_content))))
-            (node
-              (tag_name)
-              (attributes
-                (attribute
-                  (tag_name)
-                  (member_expression
-                    (identifier)
-                    (identifier)))))))
-        (node
-          (tag_name)
-          (attributes
-            (attribute
-              (tag_name)
-              (identifier))
-            (attribute
-              (tag_name)
+        (children
+          (node
+            (tag_name)
+            (children
               (string
-                (string_content)))))
-        (node
-          (tag_name))))))
+                (string_content))))
+          (node
+            (tag_name)
+            (children
+              (node
+                (tag_name)
+                (children
+                  (string
+                    (string_content))))
+              (node
+                (tag_name)
+                (attributes
+                  (attribute
+                    (tag_name)
+                    (member_expression
+                      (identifier)
+                      (identifier)))))))
+          (node
+            (tag_name)
+            (attributes
+              (attribute
+                (tag_name)
+                (identifier))
+              (attribute
+                (tag_name)
+                (string
+                  (string_content)))))
+          (node
+            (tag_name)))))))
 
 ==================
 JSON literals and comments
@@ -81,8 +82,8 @@ JSON literals and comments
 // 注释
 /* block
  ** comment */
-data values := [null,true,false,0,12,1.2e-3,-4,1E+2,"line\n\u4e2d\"\\",];
-data obj := {unquoted:values,"quoted-key":{},values,"values",};
+data values = [None,True,False,0,12,1.2e-3,-4,1E+2,"line\n\u4e2d\"\\",];
+data obj = {unquoted:values,"quoted-key":{},values,"values",};
 ---
 
 (source_file
@@ -125,11 +126,11 @@ data obj := {unquoted:values,"quoted-key":{},values,"values",};
 ==================
 All lambda parameter forms
 ==================
-data a := map([1],x=>x+1);
-data b := map([1],(x)=>x*2);
-data c := map([1],(x,i)=>({value:x,index:i}));
-data d := map([1],()=>42);
-data e := map([1],x=>y=>x+y);
+data a = map([1],x=>x+1);
+data b = map([1],(x)=>x*2);
+data c = map([1],(x,i)=>({value:x,index:i}));
+data d = map([1],()=>42);
+data e = map([1],x=>y=>x+y);
 ---
 
 (source_file
@@ -205,12 +206,12 @@ data e := map([1],x=>y=>x+y);
 ==================
 Precedence and associativity
 ==================
-data a := 1 + 2 * 3;
-data b := 1 - 2 - 3;
-data c := a ?? b || true && false;
-data d := a == b != false;
-data e := !false || -a < b && a >= 0;
-data f := (a + b) / 2 % 3;
+data a = 1 + 2 * 3;
+data b = 1 - 2 - 3;
+data c = a ?? b || True && False;
+data d = a == b != False;
+data e = !False || -a < b && a >= 0;
+data f = (a + b) / 2 % 3;
 ---
 
 (source_file
@@ -271,10 +272,10 @@ data f := (a + b) / 2 % 3;
 ==================
 Static projections and optional members
 ==================
-data a := [{"x":{value:1}}];
-data b := a[0]["x"]?.value;
-data c := a[0].x.value ?? 0;
-data d := (a[0]).x;
+data a = [{"x":{value:1}}];
+data b = a[0]["x"]?.value;
+data c = a[0].x.value ?? 0;
+data d = (a[0]).x;
 ---
 
 (source_file
@@ -322,11 +323,11 @@ data d := (a[0]).x;
 ==================
 Relational pipeline
 ==================
-data t := table([{name:"a",n:1}]);
-data r := select({from:{t},where:(r)=>r.t.n>0,
+data t = table([{name:"a",n:1}]);
+data r = select({from:{t},where:(r)=>r.t.n>0,
  group_by:r=>({name:r.t.name}),fields:(g,rows)=>({name:g.name,n:sum(rows.t.n)??0}),
  order_by:o=>[desc(o.n),asc(o.name)],limit:10});
-data s := select_one({from:{r},fields:x=>({n:x.r.n})});
+data s = select_one({from:{r},fields:x=>({n:x.r.n})});
 ---
 
 (source_file
@@ -453,9 +454,9 @@ data s := select_one({from:{r},fields:x=>({n:x.r.n})});
 ==================
 Attributes and namespaced DOM tags
 ==================
-data t := {value:2};
-figure chart := LineChart(spec={x:"day",value:"n"}, data=t,);
-report result := Report(title="test") [div(class="section",data-oks-shrink=true) [p ["文字",Value(data=round(t.value,1))], custom:tag(aria-label="hello") [],],UseFigure(ref=chart)];
+data t = {value:2};
+figure chart = LineChart(spec={x:"day",value:"n"}, data=t,);
+report result = tree! { Report(title="test") [div(class="section",data-oks-shrink=True) [p ["文字",Value(data=round(t.value,1))], custom:tag(aria-label="hello") [],],UseFigure(ref=chart)] };
 ---
 
 (source_file
@@ -486,62 +487,63 @@ report result := Report(title="test") [div(class="section",data-oks-shrink=true)
           (identifier)))))
   (report_declaration
     (identifier)
-    (node
-      (tag_name)
-      (attributes
-        (attribute
-          (tag_name)
-          (string
-            (string_content))))
-      (children
-        (node
-          (tag_name)
-          (attributes
-            (attribute
-              (tag_name)
-              (string
-                (string_content)))
-            (attribute
-              (tag_name)
-              (boolean)))
-          (children
-            (node
-              (tag_name)
-              (children
+    (tree_expression
+      (node
+        (tag_name)
+        (attributes
+          (attribute
+            (tag_name)
+            (string
+              (string_content))))
+        (children
+          (node
+            (tag_name)
+            (attributes
+              (attribute
+                (tag_name)
                 (string
-                  (string_content))
-                (node
-                  (tag_name)
-                  (attributes
-                    (attribute
-                      (tag_name)
-                      (call_expression
-                        (identifier)
-                        (arguments
-                          (member_expression
-                            (identifier)
-                            (identifier))
-                          (number))))))))
-            (node
-              (tag_name)
-              (attributes
-                (attribute
-                  (tag_name)
+                  (string_content)))
+              (attribute
+                (tag_name)
+                (boolean)))
+            (children
+              (node
+                (tag_name)
+                (children
                   (string
-                    (string_content))))
-              (children))))
-        (node
-          (tag_name)
-          (attributes
-            (attribute
-              (tag_name)
-              (identifier))))))))
+                    (string_content))
+                  (node
+                    (tag_name)
+                    (attributes
+                      (attribute
+                        (tag_name)
+                        (call_expression
+                          (identifier)
+                          (arguments
+                            (member_expression
+                              (identifier)
+                              (identifier))
+                            (number))))))))
+              (node
+                (tag_name)
+                (attributes
+                  (attribute
+                    (tag_name)
+                    (string
+                      (string_content))))
+                (children))))
+          (node
+            (tag_name)
+            (attributes
+              (attribute
+                (tag_name)
+                (identifier)))))))))
 
 ==================
 Comment delimiters inside strings
 ==================
-data s := "// not a comment /* neither */ ); ] } ;";
-report a := Report [p ["{ [ //",Lit ["\t"]]];
+data s = "// not a comment /* neither */ ); ] } ;";
+report a = tree! { Report [p ["{ [ //",Lit ["\t"]]] };
 ---
 
 (source_file
@@ -551,26 +553,27 @@ report a := Report [p ["{ [ //",Lit ["\t"]]];
       (string_content)))
   (report_declaration
     (identifier)
-    (node
-      (tag_name)
-      (children
-        (node
-          (tag_name)
-          (children
-            (string
-              (string_content))
-            (node
-              (tag_name)
-              (children
-                (string
-                  (escape_sequence))))))))))
+    (tree_expression
+      (node
+        (tag_name)
+        (children
+          (node
+            (tag_name)
+            (children
+              (string
+                (string_content))
+              (node
+                (tag_name)
+                (children
+                  (string
+                    (escape_sequence)))))))))))
 
 ==================
 Keyword names and builtin calls
 ==================
-data value := data({rows:[]});
-data q := query({data:value,report:"r",figure:"f",true:false});
-data time := time_windows(context(),{unit:"day",count:7,mode:"complete"});
+data value = data({rows:[]});
+data q = query({data:value,report:"r",figure:"f",True:False});
+data time = time_windows(context(),{unit:"day",count:7,mode:"complete"});
 ---
 
 (source_file
@@ -627,11 +630,11 @@ data time := time_windows(context(),{unit:"day",count:7,mode:"complete"});
 ==================
 Parentheses versus parameters
 ==================
-data a := (1);
-data b := (a);
-data c := ((a));
-data d := map([a],(x)=>(x+1));
-data e := map([a],(x)=>((x)));
+data a = (1);
+data b = (a);
+data c = ((a));
+data d = map([a],(x)=>(x+1));
+data e = map([a],(x)=>((x)));
 ---
 
 (source_file

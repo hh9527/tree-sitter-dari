@@ -1,1 +1,1 @@
-data a := "bad\q";
+data a = "bad\q";

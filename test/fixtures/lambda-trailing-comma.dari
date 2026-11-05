@@ -1,1 +1,1 @@
-data a := map([], (x,) => x);
+data a = map([], (x,) => x);

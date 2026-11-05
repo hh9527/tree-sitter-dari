@@ -48,7 +48,7 @@
         },
         {
           "type": "STRING",
-          "value": ":="
+          "value": "="
         },
         {
           "type": "FIELD",
@@ -81,7 +81,7 @@
         },
         {
           "type": "STRING",
-          "value": ":="
+          "value": "="
         },
         {
           "type": "FIELD",
@@ -114,14 +114,14 @@
         },
         {
           "type": "STRING",
-          "value": ":="
+          "value": "="
         },
         {
           "type": "FIELD",
           "name": "value",
           "content": {
             "type": "SYMBOL",
-            "name": "node"
+            "name": "tree_expression"
           }
         },
         {
@@ -138,12 +138,37 @@
           "value": "answer"
         },
         {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "tree_expression"
+          }
+        },
+        {
           "type": "STRING",
-          "value": ":="
+          "value": ";"
+        }
+      ]
+    },
+    "tree_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "tree"
+        },
+        {
+          "type": "STRING",
+          "value": "!"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
         },
         {
           "type": "FIELD",
-          "name": "value",
+          "name": "root",
           "content": {
             "type": "SYMBOL",
             "name": "node"
@@ -151,7 +176,7 @@
         },
         {
           "type": "STRING",
-          "value": ";"
+          "value": "}"
         }
       ]
     },
@@ -610,17 +635,17 @@
       "members": [
         {
           "type": "STRING",
-          "value": "true"
+          "value": "True"
         },
         {
           "type": "STRING",
-          "value": "false"
+          "value": "False"
         }
       ]
     },
     "null": {
       "type": "STRING",
-      "value": "null"
+      "value": "None"
     },
     "array": {
       "type": "SEQ",

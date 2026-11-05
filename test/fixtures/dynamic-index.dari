@@ -1,1 +1,1 @@
-data a := items[index];
+data a = items[index];

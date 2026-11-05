@@ -1,1 +1,1 @@
-report a := Report { p { "old" }; };
+report a = tree! { Report { p { "old" }; } };
