@@ -2,7 +2,7 @@
 Declarations and DOM children
 ==================
 data ctx = context();
-figure f = BarChart(spec={x:"name",value:"n"},data=ctx);
+figure f = tree! { BarChart(spec={x:"name",value:"n"},data=ctx) };
 report answer = tree! { Report(title="概览") [h1 ["标题"], p [Lit ["1.2"], Value(data=ctx?.total)], UseFigure(ref = f, caption = "说明"), br,] };
 ---
 
@@ -14,23 +14,24 @@ report answer = tree! { Report(title="概览") [h1 ["标题"], p [Lit ["1.2"], V
       (arguments)))
   (figure_declaration
     (identifier)
-    (node
-      (tag_name)
-      (attributes
-        (attribute
-          (tag_name)
-          (object
-            (pair
-              (identifier)
-              (string
-                (string_content)))
-            (pair
-              (identifier)
-              (string
-                (string_content)))))
-        (attribute
-          (tag_name)
-          (identifier)))))
+    (tree_expression
+      (node
+        (tag_name)
+        (attributes
+          (attribute
+            (tag_name)
+            (object
+              (pair
+                (identifier)
+                (string
+                  (string_content)))
+              (pair
+                (identifier)
+                (string
+                  (string_content)))))
+          (attribute
+            (tag_name)
+            (identifier))))))
   (report_declaration
     (identifier)
     (tree_expression
@@ -455,7 +456,7 @@ data s = select_one({from:{r},fields:x=>({n:x.r.n})});
 Attributes and namespaced DOM tags
 ==================
 data t = {value:2};
-figure chart = LineChart(spec={x:"day",value:"n"}, data=t,);
+figure chart = tree! { LineChart(spec={x:"day",value:"n"}, data=t,) };
 report result = tree! { Report(title="test") [div(class="section",data-oks-shrink=True) [p ["文字",Value(data=round(t.value,1))], custom:tag(aria-label="hello") [],],UseFigure(ref=chart)] };
 ---
 
@@ -468,23 +469,24 @@ report result = tree! { Report(title="test") [div(class="section",data-oks-shrin
         (number))))
   (figure_declaration
     (identifier)
-    (node
-      (tag_name)
-      (attributes
-        (attribute
-          (tag_name)
-          (object
-            (pair
-              (identifier)
-              (string
-                (string_content)))
-            (pair
-              (identifier)
-              (string
-                (string_content)))))
-        (attribute
-          (tag_name)
-          (identifier)))))
+    (tree_expression
+      (node
+        (tag_name)
+        (attributes
+          (attribute
+            (tag_name)
+            (object
+              (pair
+                (identifier)
+                (string
+                  (string_content)))
+              (pair
+                (identifier)
+                (string
+                  (string_content)))))
+          (attribute
+            (tag_name)
+            (identifier))))))
   (report_declaration
     (identifier)
     (tree_expression

@@ -188,22 +188,22 @@ data catChartRows = select({from:{c:catTop5},
 
 // ---------- 图表 ----------
 data trendSpec = {xType:"String",x:"day",value:"n",xLabel:"日期",valueLabel:"告警数",title:"近 14 日每日告警量"};
-figure trendChart = LineChart(spec = trendSpec, data = dailyTotal);
+figure trendChart = tree! { LineChart(spec = trendSpec, data = dailyTotal) };
 
 data growthSpec = {x:"tenant",value:"n",series:"week",stack:"total",valueLabel:"告警数",title:"告警增幅最大的 5 个租户：前一周与最近一周告警量"};
-figure growthChart = ColumnChart(spec = growthSpec, data = growthLong);
+figure growthChart = tree! { ColumnChart(spec = growthSpec, data = growthLong) };
 
 data openSpec = {x:"tenant",value:"ratio",sort:"desc",unit:"%",valueLabel:"未清除占比（%）",title:"5 个租户最近一周未清除告警占比"};
-figure openChart = BarChart(spec = openSpec, data = openRatio);
+figure openChart = tree! { BarChart(spec = openSpec, data = openRatio) };
 
 data kpiSpec = {x:"tenant",value:"value",series:"metric",valueLabel:"平均使用率（%）",title:"5 个租户前后两周 CPU / 内存平均使用率"};
-figure kpiChart = ColumnChart(spec = kpiSpec, data = kpiLong);
+figure kpiChart = tree! { ColumnChart(spec = kpiSpec, data = kpiLong) };
 
 data sevSpec = {x:"tenant",value:"n",series:"severity",stack:"total",valueLabel:"告警数",title:"5 个租户最近一周告警级别构成"};
-figure sevChart = ColumnChart(spec = sevSpec, data = sevTop5);
+figure sevChart = tree! { ColumnChart(spec = sevSpec, data = sevTop5) };
 
 data catSpec = {x:"category",series:"tenant",value:"n",title:"5 个租户最近一周告警分类分布（前 8 类）"};
-figure catChart = Heatmap(spec = catSpec, data = catChartRows);
+figure catChart = tree! { Heatmap(spec = catSpec, data = catChartRows) };
 
 // ---------- 报告 ----------
 report answer = tree! { Report(title = "近 14 天租户告警变化与设备资源对比") [

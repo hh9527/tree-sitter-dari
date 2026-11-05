@@ -10,7 +10,7 @@ module.exports = grammar({
     source_file: $ => repeat($._declaration),
     _declaration: $ => choice($.data_declaration, $.figure_declaration, $.report_declaration, $.answer_declaration),
     data_declaration: $ => seq('data', field('name', $.identifier), '=', field('value', $._expression), ';'),
-    figure_declaration: $ => seq('figure', field('name', $.identifier), '=', field('value', $.node), ';'),
+    figure_declaration: $ => seq('figure', field('name', $.identifier), '=', field('value', $.tree_expression), ';'),
     report_declaration: $ => seq('report', field('name', $.identifier), '=', field('value', $.tree_expression), ';'),
     answer_declaration: $ => seq('answer', field('value', $.tree_expression), ';'),
     tree_expression: $ => seq('tree', '!', '{', field('root', $.node), '}'),

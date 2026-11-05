@@ -16,6 +16,8 @@
 (pair key: (identifier) @property)
 (shorthand_property (identifier) @property)
 (node tag: (tag_name) @tag)
+((node tag: (tag_name) @constructor)
+ (#match? @constructor "^[A-Z]"))
 (attribute name: (tag_name) @attribute)
 ["=>" "=" "?." "??" "||" "&&" "==" "!=" "<" ">" "<=" ">=" "+" "-" "*" "/" "%" "!"] @operator
 ["(" ")" "[" "]" "{" "}"] @punctuation.bracket

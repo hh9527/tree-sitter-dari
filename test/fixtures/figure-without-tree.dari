@@ -1,0 +1,1 @@
+figure chart = BarChart(spec={x:"name",value:"n"},data=rows);

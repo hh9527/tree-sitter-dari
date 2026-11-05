@@ -585,7 +585,7 @@
         "required": true,
         "types": [
           {
-            "type": "node",
+            "type": "tree_expression",
             "named": true
           }
         ]
