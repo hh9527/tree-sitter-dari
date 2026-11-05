@@ -1,4 +1,4 @@
-["data" "figure" "report" "answer"] @keyword
+["data" "figure" "report" "answer" "if" "else" "let"] @keyword
 (comment) @comment
 (string) @string
 (escape_sequence) @string.escape
@@ -20,3 +20,6 @@
 [":=" "=>" "=" "?." "??" "||" "&&" "==" "!=" "<" ">" "<=" ">=" "+" "-" "*" "/" "%" "!"] @operator
 ["(" ")" "[" "]" "{" "}"] @punctuation.bracket
 ["," ";" ":" "."] @punctuation.delimiter
+
+"Some" @constructor
+(if_node binding: (identifier) @variable.parameter)

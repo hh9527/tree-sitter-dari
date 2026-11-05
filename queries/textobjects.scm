@@ -16,3 +16,5 @@
 (children (_) @entry.around)
 (comment) @comment.inside
 (comment)+ @comment.around
+
+(if_node consequence: (children) @class.inside) @class.around

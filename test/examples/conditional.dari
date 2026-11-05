@@ -1,0 +1,10 @@
+data rows := query({limit:5});
+data summary := select_one({from:{r:rows},fields:r=>({n:r.r.n}),limit:1});
+answer := Answer [
+    if (is_some(summary)) [p ["present"]] else if (false) [] else [p ["empty"]],
+    if let Some(i) = summary [
+        p [value(ref=i.n)],
+        if (i.n > 0) [strong ["positive"]],
+    ] else [p ["empty"]],
+    if let Some(i) = (rows[0]) [p [value(ref=i.n)]],
+];

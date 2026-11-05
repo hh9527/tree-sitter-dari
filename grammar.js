@@ -17,7 +17,11 @@ module.exports = grammar({
     tag_name: _ => /[A-Za-z_$][A-Za-z0-9_$:-]*/,
     attributes: $ => seq('(', commaSep($.attribute), ')'),
     attribute: $ => seq(field('name', $.tag_name), '=', field('value', $._expression)),
-    children: $ => seq('[', commaSep(choice($.string, $.node)), ']'),
+    children: $ => seq('[', commaSep(choice($.string, $.node, $.if_node)), ']'),
+    if_node: $ => prec.right(seq('if', choice(
+      seq('(', field('condition', $._expression), ')'),
+      seq('let', 'Some', '(', field('binding', $.identifier), ')', '=', field('value', $._expression))
+    ), field('consequence', $.children), optional(seq('else', field('alternative', choice($.children, $.if_node)))))),
     _expression: $ => choice($.identifier, $.number, $.string, $.boolean, $.null, $.array, $.object,
       $.parenthesized_expression, $.lambda_expression, $.call_expression, $.member_expression,
       $.subscript_expression, $.unary_expression, $.binary_expression),
