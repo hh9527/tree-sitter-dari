@@ -219,7 +219,8 @@
     },
     "tag_name": {
       "type": "PATTERN",
-      "value": "[A-Za-z_$][A-Za-z0-9_$:-]*"
+      "value": "[$_\\p{XID_Start}][$_\\p{XID_Continue}:-]*",
+      "flags": "u"
     },
     "attributes": {
       "type": "SEQ",
@@ -573,7 +574,8 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[A-Za-z_$][A-Za-z0-9_$]*"
+      "value": "[$_\\p{XID_Start}][$_\\p{XID_Continue}]*",
+      "flags": "u"
     },
     "number": {
       "type": "PATTERN",
