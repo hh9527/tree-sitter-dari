@@ -1,5 +1,7 @@
 # tree-sitter-dari
 
+注释使用 `#`，延续到行尾。
+
 DARI 类型化数据流语言的增量解析、高亮、缩进与文本对象。语法依据 lab-ontology/dari/src/syntax.ts，扩展名为 .dari。
 
 支持 type/Schema/Option/newtype、data/report/answer、query!/query_remote!、context!、do、let 顺序绑定、|> 管线、.as! 后置绑定及 tree! 条件节点。表达式使用 snake_case 标识和 PascalCase 类型／组件；节点属性使用 =，记录字段使用冒号。声明式语言不开放 lambda、循环或任意代码。

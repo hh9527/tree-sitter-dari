@@ -31,7 +31,7 @@ for(const fixture of readdirSync(resolve(root,'test/fixtures'))) {
 const recovery=run(['parse','test/fixtures/missing-value.dari']);
 assert.match(recovery.stdout,/MISSING|ERROR/);
 assert.equal((recovery.stdout.match(/data_declaration/g)||[]).length,2,'recover next declaration');
-const edited=parse(samples[0],['--edits','0,0 0 // incremental edit\n']);
+const edited=parse(samples[0],['--edits','0,0 0 # incremental edit\n']);
 assert.equal(edited.status,0,JSON.stringify(edited.result));
 const highlights=run(['query','queries/highlights.scm',samples[0]]);
 assert.equal(highlights.status,0,highlights.stderr);

@@ -50,6 +50,6 @@ module.exports=grammar({
   attribute:$=>seq(field('name',$.identifier),'=',field('value',$._expression)),
   children:$=>seq('[',commaSep(choice($.string,$.node,$.if_node)),']'),
   if_node:$=>prec.right(seq('if',choice(seq('let','Some','(',field('binding',$.identifier),')','=',field('value',$._expression)),field('condition',$._expression)),field('consequence',$.children),seq('else',field('alternative',$.children)))),
-  comment:_=>token(choice(seq('//',/[^\r\n]*/),seq('#',/[^\r\n]*/),seq('/*',/[^*]*\*+([^/*][^*]*\*+)*/,'/'))),
+  comment:_=>token(seq('#',/[^\r\n]*/)),
  }
 });
