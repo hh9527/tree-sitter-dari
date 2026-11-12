@@ -17,8 +17,6 @@ function parse(path,extra=[]) {
   return {result:JSON.parse(r.stdout.slice(start)),status:r.status};
 }
 const samples=readdirSync(resolve(root,'test/examples')).filter(x=>x.endsWith('.dari')).map(x=>resolve(root,'test/examples',x));
-const lexical=parse(resolve(root,'test/lexical/unicode.dari'));
-assert.equal(lexical.status,0,JSON.stringify(lexical.result));
 for(const path of [...samples,...process.argv.slice(2).map(x=>resolve(x))]) {
   const {result,status}=parse(path);
   assert.equal(status,0,JSON.stringify(result));

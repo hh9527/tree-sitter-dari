@@ -1,4 +1,3 @@
-; Delimited expressions and DOM children.
-[(object) (array) (arguments) (parameters) (attributes) (children)
- (parenthesized_expression) (tree_expression)] @indent
+[(object) (array) (arguments) (attributes) (children) (schema_type)
+ (parenthesized_expression) (tree_expression) (query_expression) (do_expression)] @indent
 ["}" "]" ")"] @outdent

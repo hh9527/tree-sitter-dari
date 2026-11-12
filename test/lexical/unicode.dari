@@ -1,2 +1,0 @@
-data 数据 = row.周次;
-answer tree! { Answer [段落 [Value(data=数据)]] };

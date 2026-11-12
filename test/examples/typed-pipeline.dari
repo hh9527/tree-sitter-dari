@@ -1,0 +1,11 @@
+type Id=struct(String);
+type Device=Schema({id:Id,cpu:Option(Percent)}) & Schema({name:String});
+data ctx=context! {now:Context::Now,tz:Context::ClientTz};
+data threshold=do {let n=40.0;n+2.0};
+data rows=query_remote! {
+ from(ic::device_kpi).as!(r) |> project({cpu:r.cpu_usage}).as!(r)
+ |> order_by(desc(r.cpu)) |> take(10)
+};
+data first=query! {let r=from(rows);let r=r |> project({cpu:r.cpu});r |> take_opt()};
+report full=tree! {Report [p ["CPU",Value(data=rows,field=project!(cpu))]]};
+answer tree! {Answer [if let Some(r)=first [p [Value(value=r.cpu)]] else [p ["无数据"]],UseReport(ref=full)]};

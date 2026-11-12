@@ -1,4 +1,5 @@
-["data" "figure" "report" "answer" "if" "else" "let" "tree"] @keyword
+["type" "data" "report" "answer" "if" "else" "let" "do"] @keyword
+["query" "query_remote" "context" "project" "tree" "as"] @function.macro
 (comment) @comment
 (string) @string
 (escape_sequence) @string.escape
@@ -6,22 +7,22 @@
 (boolean) @boolean
 (null) @constant.builtin
 (identifier) @variable
+(type_declaration name: (identifier) @type.definition)
+(type_identifier) @type
 (data_declaration name: (identifier) @variable.definition)
-(figure_declaration name: (identifier) @variable.definition)
+(let_declaration name: (identifier) @variable.definition)
+(postfix_binding name: (identifier) @variable.definition)
 (report_declaration name: (identifier) @variable.definition)
-(call_expression function: (identifier) @function.call)
-(parameters (identifier) @variable.parameter)
-(lambda_expression parameters: (identifier) @variable.parameter)
+(call_expression function: (_) @function.call)
 (member_expression property: (identifier) @property)
 (pair key: (identifier) @property)
 (shorthand_property (identifier) @property)
+(schema_field name: (identifier) @property)
 (node tag: (tag_name) @tag)
-((node tag: (tag_name) @constructor)
- (#match? @constructor "^[A-Z]"))
-(attribute name: (tag_name) @attribute)
-["=>" "=" "?." "??" "||" "&&" "==" "!=" "<" ">" "<=" ">=" "+" "-" "*" "/" "%" "!"] @operator
+((node tag: (tag_name) @constructor) (#match? @constructor "^[A-Z]"))
+(attribute name: (identifier) @attribute)
+["=" "|>" "::" "&" "||" "&&" "==" "!=" "<" ">" "<=" ">=" "+" "-" "*" "/" "%" "!"] @operator
 ["(" ")" "[" "]" "{" "}"] @punctuation.bracket
 ["," ";" ":" "."] @punctuation.delimiter
-
 "Some" @constructor
 (if_node binding: (identifier) @variable.parameter)

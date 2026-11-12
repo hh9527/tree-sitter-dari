@@ -40,11 +40,15 @@
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "context_expression",
           "named": true
         },
         {
-          "type": "lambda_expression",
+          "type": "do_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
           "named": true
         },
         {
@@ -68,11 +72,31 @@
           "named": true
         },
         {
+          "type": "postfix_binding",
+          "named": true
+        },
+        {
+          "type": "projection_expression",
+          "named": true
+        },
+        {
+          "type": "query_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_identifier",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
         {
           "type": "subscript_expression",
+          "named": true
+        },
+        {
+          "type": "tree_expression",
           "named": true
         },
         {
@@ -107,11 +131,15 @@
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "context_expression",
           "named": true
         },
         {
-          "type": "lambda_expression",
+          "type": "do_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
           "named": true
         },
         {
@@ -135,11 +163,31 @@
           "named": true
         },
         {
+          "type": "postfix_binding",
+          "named": true
+        },
+        {
+          "type": "projection_expression",
+          "named": true
+        },
+        {
+          "type": "query_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_identifier",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
         {
           "type": "subscript_expression",
+          "named": true
+        },
+        {
+          "type": "tree_expression",
           "named": true
         },
         {
@@ -158,7 +206,7 @@
         "required": true,
         "types": [
           {
-            "type": "tag_name",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -184,11 +232,15 @@
             "named": true
           },
           {
-            "type": "identifier",
+            "type": "context_expression",
             "named": true
           },
           {
-            "type": "lambda_expression",
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -212,11 +264,31 @@
             "named": true
           },
           {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
           {
             "type": "subscript_expression",
+            "named": true
+          },
+          {
+            "type": "tree_expression",
             "named": true
           },
           {
@@ -267,11 +339,15 @@
             "named": true
           },
           {
-            "type": "identifier",
+            "type": "context_expression",
             "named": true
           },
           {
-            "type": "lambda_expression",
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -295,11 +371,31 @@
             "named": true
           },
           {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
           {
             "type": "subscript_expression",
+            "named": true
+          },
+          {
+            "type": "tree_expression",
             "named": true
           },
           {
@@ -361,10 +457,6 @@
             "named": false
           },
           {
-            "type": "??",
-            "named": false
-          },
-          {
             "type": "||",
             "named": false
           }
@@ -391,11 +483,15 @@
             "named": true
           },
           {
-            "type": "identifier",
+            "type": "context_expression",
             "named": true
           },
           {
-            "type": "lambda_expression",
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -419,11 +515,31 @@
             "named": true
           },
           {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
           {
             "type": "subscript_expression",
+            "named": true
+          },
+          {
+            "type": "tree_expression",
             "named": true
           },
           {
@@ -460,6 +576,10 @@
           {
             "type": "identifier",
             "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
           }
         ]
       }
@@ -489,6 +609,59 @@
     }
   },
   {
+    "type": "constructed_type",
+    "named": true,
+    "fields": {
+      "constructor": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      },
+      "inner": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructed_type",
+            "named": true
+          },
+          {
+            "type": "intersection_type",
+            "named": true
+          },
+          {
+            "type": "schema_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "context_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "object",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "data_declaration",
     "named": true,
     "fields": {
@@ -498,6 +671,28 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "constructed_type",
+            "named": true
+          },
+          {
+            "type": "intersection_type",
+            "named": true
+          },
+          {
+            "type": "schema_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
             "named": true
           }
         ]
@@ -523,11 +718,15 @@
             "named": true
           },
           {
-            "type": "identifier",
+            "type": "context_expression",
             "named": true
           },
           {
-            "type": "lambda_expression",
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -551,11 +750,31 @@
             "named": true
           },
           {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
           {
             "type": "subscript_expression",
+            "named": true
+          },
+          {
+            "type": "tree_expression",
             "named": true
           },
           {
@@ -567,29 +786,105 @@
     }
   },
   {
-    "type": "figure_declaration",
+    "type": "do_expression",
     "named": true,
     "fields": {
-      "name": {
+      "result": {
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "context_expression",
+            "named": true
+          },
+          {
+            "type": "do_expression",
+            "named": true
+          },
           {
             "type": "identifier",
             "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
+          },
+          {
+            "type": "member_expression",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "subscript_expression",
+            "named": true
+          },
           {
             "type": "tree_expression",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
             "named": true
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "let_declaration",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -598,14 +893,10 @@
     "fields": {
       "alternative": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "children",
-            "named": true
-          },
-          {
-            "type": "if_node",
             "named": true
           }
         ]
@@ -641,11 +932,15 @@
             "named": true
           },
           {
-            "type": "identifier",
+            "type": "context_expression",
             "named": true
           },
           {
-            "type": "lambda_expression",
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -669,11 +964,31 @@
             "named": true
           },
           {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
           {
             "type": "subscript_expression",
+            "named": true
+          },
+          {
+            "type": "tree_expression",
             "named": true
           },
           {
@@ -713,11 +1028,15 @@
             "named": true
           },
           {
-            "type": "identifier",
+            "type": "context_expression",
             "named": true
           },
           {
-            "type": "lambda_expression",
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -741,11 +1060,31 @@
             "named": true
           },
           {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
           {
             "type": "subscript_expression",
+            "named": true
+          },
+          {
+            "type": "tree_expression",
             "named": true
           },
           {
@@ -757,10 +1096,70 @@
     }
   },
   {
-    "type": "lambda_expression",
+    "type": "intersection_type",
     "named": true,
     "fields": {
-      "body": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructed_type",
+            "named": true
+          },
+          {
+            "type": "intersection_type",
+            "named": true
+          },
+          {
+            "type": "schema_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructed_type",
+            "named": true
+          },
+          {
+            "type": "intersection_type",
+            "named": true
+          },
+          {
+            "type": "schema_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "let_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -781,11 +1180,15 @@
             "named": true
           },
           {
-            "type": "identifier",
+            "type": "context_expression",
             "named": true
           },
           {
-            "type": "lambda_expression",
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -809,6 +1212,26 @@
             "named": true
           },
           {
+            "type": "pipeline_expression",
+            "named": true
+          },
+          {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -817,21 +1240,11 @@
             "named": true
           },
           {
-            "type": "unary_expression",
-            "named": true
-          }
-        ]
-      },
-      "parameters": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
+            "type": "tree_expression",
             "named": true
           },
           {
-            "type": "parameters",
+            "type": "unary_expression",
             "named": true
           }
         ]
@@ -863,11 +1276,15 @@
             "named": true
           },
           {
-            "type": "identifier",
+            "type": "context_expression",
             "named": true
           },
           {
-            "type": "lambda_expression",
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -891,6 +1308,22 @@
             "named": true
           },
           {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -899,22 +1332,12 @@
             "named": true
           },
           {
-            "type": "unary_expression",
+            "type": "tree_expression",
             "named": true
-          }
-        ]
-      },
-      "operator": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": ".",
-            "named": false
           },
           {
-            "type": "?.",
-            "named": false
+            "type": "unary_expression",
+            "named": true
           }
         ]
       },
@@ -1018,11 +1441,15 @@
             "named": true
           },
           {
-            "type": "identifier",
+            "type": "context_expression",
             "named": true
           },
           {
-            "type": "lambda_expression",
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -1046,6 +1473,22 @@
             "named": true
           },
           {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -1054,26 +1497,15 @@
             "named": true
           },
           {
+            "type": "tree_expression",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           }
         ]
       }
-    }
-  },
-  {
-    "type": "parameters",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1101,11 +1533,15 @@
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "context_expression",
           "named": true
         },
         {
-          "type": "lambda_expression",
+          "type": "do_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
           "named": true
         },
         {
@@ -1129,6 +1565,22 @@
           "named": true
         },
         {
+          "type": "postfix_binding",
+          "named": true
+        },
+        {
+          "type": "projection_expression",
+          "named": true
+        },
+        {
+          "type": "query_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_identifier",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -1137,7 +1589,427 @@
           "named": true
         },
         {
+          "type": "tree_expression",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pipeline_expression",
+    "named": true,
+    "fields": {
+      "input": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "context_expression",
+            "named": true
+          },
+          {
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "member_expression",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "subscript_expression",
+            "named": true
+          },
+          {
+            "type": "tree_expression",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          }
+        ]
+      },
+      "operation": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "context_expression",
+            "named": true
+          },
+          {
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "member_expression",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "subscript_expression",
+            "named": true
+          },
+          {
+            "type": "tree_expression",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "postfix_binding",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "context_expression",
+            "named": true
+          },
+          {
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "member_expression",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "subscript_expression",
+            "named": true
+          },
+          {
+            "type": "tree_expression",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "projection_expression",
+    "named": true,
+    "fields": {
+      "field": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "query_expression",
+    "named": true,
+    "fields": {
+      "macro": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "query",
+            "named": false
+          },
+          {
+            "type": "query_remote",
+            "named": false
+          }
+        ]
+      },
+      "result": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "context_expression",
+            "named": true
+          },
+          {
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "member_expression",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "pipeline_expression",
+            "named": true
+          },
+          {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "subscript_expression",
+            "named": true
+          },
+          {
+            "type": "tree_expression",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "let_declaration",
           "named": true
         }
       ]
@@ -1167,6 +2039,78 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "schema_field",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructed_type",
+            "named": true
+          },
+          {
+            "type": "intersection_type",
+            "named": true
+          },
+          {
+            "type": "schema_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "schema_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "schema_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "scoped_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1206,11 +2150,11 @@
           "named": true
         },
         {
-          "type": "figure_declaration",
+          "type": "report_declaration",
           "named": true
         },
         {
-          "type": "report_declaration",
+          "type": "type_declaration",
           "named": true
         }
       ]
@@ -1246,10 +2190,6 @@
           {
             "type": "number",
             "named": true
-          },
-          {
-            "type": "string",
-            "named": true
           }
         ]
       },
@@ -1274,11 +2214,15 @@
             "named": true
           },
           {
-            "type": "identifier",
+            "type": "context_expression",
             "named": true
           },
           {
-            "type": "lambda_expression",
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -1302,6 +2246,22 @@
             "named": true
           },
           {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -1310,11 +2270,30 @@
             "named": true
           },
           {
+            "type": "tree_expression",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           }
         ]
       }
+    }
+  },
+  {
+    "type": "tag_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1331,6 +2310,63 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "type_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructed_type",
+            "named": true
+          },
+          {
+            "type": "intersection_type",
+            "named": true
+          },
+          {
+            "type": "schema_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "type_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "scoped_identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1358,11 +2394,15 @@
             "named": true
           },
           {
-            "type": "identifier",
+            "type": "context_expression",
             "named": true
           },
           {
-            "type": "lambda_expression",
+            "type": "do_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -1386,6 +2426,22 @@
             "named": true
           },
           {
+            "type": "postfix_binding",
+            "named": true
+          },
+          {
+            "type": "projection_expression",
+            "named": true
+          },
+          {
+            "type": "query_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -1394,22 +2450,12 @@
             "named": true
           },
           {
-            "type": "unary_expression",
+            "type": "tree_expression",
             "named": true
-          }
-        ]
-      },
-      "operator": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "!",
-            "named": false
           },
           {
-            "type": "-",
-            "named": false
+            "type": "unary_expression",
+            "named": true
           }
         ]
       }
@@ -1429,6 +2475,10 @@
   },
   {
     "type": "%",
+    "named": false
+  },
+  {
+    "type": "&",
     "named": false
   },
   {
@@ -1472,6 +2522,10 @@
     "named": false
   },
   {
+    "type": "::",
+    "named": false
+  },
+  {
     "type": ";",
     "named": false
   },
@@ -1492,10 +2546,6 @@
     "named": false
   },
   {
-    "type": "=>",
-    "named": false
-  },
-  {
     "type": ">",
     "named": false
   },
@@ -1504,15 +2554,11 @@
     "named": false
   },
   {
-    "type": "?.",
-    "named": false
-  },
-  {
-    "type": "??",
-    "named": false
-  },
-  {
     "type": "False",
+    "named": false
+  },
+  {
+    "type": "Schema",
     "named": false
   },
   {
@@ -1536,12 +2582,24 @@
     "named": false
   },
   {
+    "type": "as",
+    "named": false
+  },
+  {
     "type": "comment",
     "named": true,
     "extra": true
   },
   {
+    "type": "context",
+    "named": false
+  },
+  {
     "type": "data",
+    "named": false
+  },
+  {
+    "type": "do",
     "named": false
   },
   {
@@ -1551,10 +2609,6 @@
   {
     "type": "escape_sequence",
     "named": true
-  },
-  {
-    "type": "figure",
-    "named": false
   },
   {
     "type": "identifier",
@@ -1577,6 +2631,18 @@
     "named": true
   },
   {
+    "type": "project",
+    "named": false
+  },
+  {
+    "type": "query",
+    "named": false
+  },
+  {
+    "type": "query_remote",
+    "named": false
+  },
+  {
     "type": "report",
     "named": false
   },
@@ -1585,15 +2651,19 @@
     "named": true
   },
   {
-    "type": "tag_name",
-    "named": true
-  },
-  {
     "type": "tree",
     "named": false
   },
   {
+    "type": "type",
+    "named": false
+  },
+  {
     "type": "{",
+    "named": false
+  },
+  {
+    "type": "|>",
     "named": false
   },
   {
