@@ -1,0 +1,11 @@
+type Sample = Schema({ value: Option(Float) });
+data ctx = context! { now: Context::Now };
+data period = CalendarUnit::Week;
+data remote = ic::device_kpi;
+data amount = Percent(12);
+data chosen = map_opt(row, $.a.b?.c);
+answer tree! { Answer [
+    p ["hello"],
+    Table(data = remote),
+    if let Some(item) = chosen [p ["yes"]] else [p ["no"]]
+] };

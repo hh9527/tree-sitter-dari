@@ -14,3 +14,4 @@
 (comment) @comment.inside
 (comment)+ @comment.around
 (if_node consequence: (children) @class.inside) @class.around
+(if_node alternative: (children) @class.inside)

@@ -1,4 +1,4 @@
-// The declarative language in lab-ontology/dari/src/syntax.ts is authoritative.
+// The declarative language in dari/packages/dari-core/src/syntax.ts is authoritative.
 const PREC={pipe:0,or:1,and:2,equality:3,comparison:4,additive:5,multiplicative:6,unary:7,access:8};
 const commaSep=r=>optional(seq(r,repeat(seq(',',r)),optional(',')));
 module.exports=grammar({

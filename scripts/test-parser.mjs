@@ -4,7 +4,7 @@ import {readdirSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {resolve} from 'node:path';
 const root=fileURLToPath(new URL('..',import.meta.url));
-const cli=resolve(root,'node_modules/tree-sitter-cli/cli.js');
+const cli=process.env.TREE_SITTER_CLI || resolve(root,'node_modules/tree-sitter-cli/cli.js');
 function run(args) {
   const r=spawnSync(process.execPath,[cli,...args],{cwd:root,encoding:'utf8'});
   if(r.error)throw r.error;
@@ -42,3 +42,18 @@ for (const [query, capture] of [['textobjects', 'entry.around'], ['indents', 'in
   assert(result.stdout.includes(capture), `${query}: ${capture}`);
 }
 console.log(`Parsed ${samples.length} bundled drafts plus ${process.argv.length-2} external drafts; invalid syntax, recovery, incremental edit and highlight/textobject/indent queries passed`);
+
+const roles = run(['query', 'queries/highlights.scm', 'test/examples/highlight-roles.dari']);
+assert.equal(roles.status, 0, roles.stderr);
+const captures = [...roles.stdout.matchAll(/capture: \d+ - ([\w.]+),[^\n]*text: `([^`]*)`/g)].map(([, capture, text]) => ({capture, text}));
+for (const [text, capture] of [
+ ['Schema','type.builtin'], ['Option','type'], ['Float','type'],
+ ['Context','type'], ['Now','constant'], ['CalendarUnit','type'], ['Week','constant'],
+ ['ic','namespace'], ['device_kpi','namespace'], ['Percent','constructor'],
+ ['map_opt','function.call'], ['Answer','constructor'], ['p','tag'],
+ ['data','attribute'], ['b','property'], ['ctx','variable.definition'],
+]) assert(captures.some(c => c.text === text && c.capture === capture), text + ': ' + capture);
+for (const text of ['Answer', 'Table']) assert(!captures.some(c => c.text === text && c.capture === 'tag'), text + ' must be a component');
+const branches = run(['query', 'queries/textobjects.scm', 'test/examples/highlight-roles.dari']);
+assert.equal(branches.status, 0, branches.stderr);
+assert.match(branches.stdout, /class.inside[^\n]*text: `\[p \["no"\]\]`/);
