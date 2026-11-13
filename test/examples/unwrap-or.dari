@@ -1,0 +1,2 @@
+data result = { cpu: source.cpu.unwrap_or!(fallback.cpu), total: unwrap_or!(source.total, 0) };
+answer tree! { Answer [UseValue(ref = result.cpu), UseValue(ref = result.total)] };

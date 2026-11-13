@@ -1,5 +1,5 @@
 ["type" "data" "report" "answer" "if" "else" "let" "do"] @keyword
-["query" "query_remote" "context" "project" "tree" "as"] @function.macro
+["query" "query_remote" "context" "tree" "as" "unwrap_or"] @function.macro
 (comment) @comment
 (string) @string
 (escape_sequence) @string.escape
@@ -26,3 +26,8 @@
 ["," ";" ":" "."] @punctuation.delimiter
 "Some" @constructor
 (if_node binding: (identifier) @variable.parameter)
+
+"$" @variable.builtin
+(projection_expression field: (identifier) @property)
+
+"?" @operator

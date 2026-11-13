@@ -12,7 +12,7 @@ data rows = query_remote! {
     |> project({cpu:a.cpu_usage}).as!(a)
     |> order_by(desc(a.cpu)) |> take(10)
 };
-answer tree! {Answer [ColumnChart(data=rows,spec={x:project!(cpu),value:project!(cpu)})]};
+answer tree! {Answer [ColumnChart(data=rows,spec={x:$.cpu,value:$.cpu})]};
 ```
 
 ## 验证

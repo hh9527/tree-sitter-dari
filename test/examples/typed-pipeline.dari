@@ -7,5 +7,5 @@ data rows=query_remote! {
  |> order_by(desc(r.cpu)) |> take(10)
 };
 data first=query! {let r=from(rows);let r=r |> project({cpu:r.cpu});r |> take_opt()};
-report full=tree! {Report [p ["CPU",Value(data=rows,field=project!(cpu))]]};
-answer tree! {Answer [if let Some(r)=first [p [Value(value=r.cpu)]] else [p ["无数据"]],UseReport(ref=full)]};
+report full=tree! {Report [p ["CPU",UseValue(ref=threshold)]]};
+answer tree! {Answer [if let Some(r)=first [p [UseValue(ref =r.cpu)]] else [p ["无数据"]],UseReport(ref=full)]};

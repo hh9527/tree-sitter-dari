@@ -454,6 +454,14 @@
         {
           "type": "SYMBOL",
           "name": "postfix_binding"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unwrap_or_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "postfix_unwrap_or"
         }
       ]
     },
@@ -960,6 +968,56 @@
           {
             "type": "STRING",
             "value": ")"
+          }
+        ]
+      }
+    },
+    "unwrap_or_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "unwrap_or"
+        },
+        {
+          "type": "STRING",
+          "value": "!"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "arguments"
+        }
+      ]
+    },
+    "postfix_unwrap_or": {
+      "type": "PREC_LEFT",
+      "value": 8,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "value",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "."
+          },
+          {
+            "type": "STRING",
+            "value": "unwrap_or"
+          },
+          {
+            "type": "STRING",
+            "value": "!"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "arguments"
           }
         ]
       }
@@ -1625,33 +1683,49 @@
       ]
     },
     "projection_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "project"
-        },
-        {
-          "type": "STRING",
-          "value": "!"
-        },
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "FIELD",
-          "name": "field",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "$"
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "."
+                },
+                {
+                  "type": "FIELD",
+                  "name": "field",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  }
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "?"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                }
+              ]
+            }
           }
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
+        ]
+      }
     },
     "tree_expression": {
       "type": "SEQ",

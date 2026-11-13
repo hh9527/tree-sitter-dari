@@ -1,0 +1,2 @@
+data selected = map_opt(row,$.a.b?.c);
+answer tree! {Answer []};
