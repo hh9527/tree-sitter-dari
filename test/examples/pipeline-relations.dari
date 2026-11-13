@@ -1,0 +1,13 @@
+data rows = query! {
+    let a = from(top_devices);
+    let b = from(top_interfaces);
+    let matched = a |> semi_join(b, a.device_id == b.device_id);
+    let output = matched |> project({device_id:a.device_id,name:a.name});
+    output |> order_by(asc(output.name))
+};
+data combined = query! {
+    let a = from(first);
+    let b = from(second);
+    a |> union_all(b)
+};
+answer tree! { Answer [Table(data = rows)] };
