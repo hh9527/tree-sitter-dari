@@ -51,7 +51,7 @@ for (const [text, capture] of [
  ['Context','type'], ['Now','constant'], ['CalendarUnit','type'], ['Week','constant'],
  ['ic','namespace'], ['device_kpi','namespace'], ['Percent','constructor'],
  ['map_opt','function.call'], ['Answer','constructor'], ['p','tag'],
- ['data','attribute'], ['b','property'], ['ctx','variable.definition'],
+ ['data','attribute'], ['b','variable.other.member'], ['ctx','variable.definition'],
 ]) assert(captures.some(c => c.text === text && c.capture === capture), text + ': ' + capture);
 for (const text of ['Answer', 'Table']) assert(!captures.some(c => c.text === text && c.capture === 'tag'), text + ' must be a component');
 const branches = run(['query', 'queries/textobjects.scm', 'test/examples/highlight-roles.dari']);
